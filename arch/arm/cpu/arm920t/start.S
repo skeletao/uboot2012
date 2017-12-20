@@ -167,11 +167,28 @@ copyex:
 	str	r1, [r0]
 # endif
 
-	/* FCLK:HCLK:PCLK = 1:2:4 */
-	/* default FCLK is 120 MHz ! */
+	/* FCLK:HCLK:PCLK = 1:4:8 */
+	/* default FCLK is 400 MHz ! */
 	ldr	r0, =CLKDIVN
-	mov	r1, #3
+	mov	r1, #5
 	str	r1, [r0]
+	
+	/* If HDIVN is not 0, should change bus mode of CPU from "fast" to "asynchronous"
+	mrc p15, 0, r1, c1, c0, 0
+	orr r1, r1, #0xc0000000
+	mcr p15, 0, r1, c1, c0, 0
+
+	/* set MPLL to 400M, Fin = 12M */
+	#define S3C2440_MPLL_400MHZ   ((Ox5c<<12)|(0x01<<4)|(0x01))
+	ldr	r0, =0x4c000004
+	ldr	r1, =S3C2440_MPLL_400MHZ
+	str	r1, [r0]
+
+	/* Start ICACHE */
+	mrc p15, 0, r0, c1, c0, 0
+	orr r0, r0, #(0x01<<12)
+	mcr p15, 0, r0, c1, c0 0
+
 #endif	/* CONFIG_S3C24X0 */
 
 	/*
