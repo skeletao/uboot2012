@@ -179,7 +179,7 @@ copyex:
 	mcr p15, 0, r1, c1, c0, 0
 
 	/* set MPLL to 400M, Fin = 12M */
-	#define S3C2440_MPLL_400MHZ   ((Ox5c<<12)|(0x01<<4)|(0x01))
+	#define S3C2440_MPLL_400MHZ   ((0x5c<<12)|(0x01<<4)|(0x01))
 	ldr	r0, =0x4c000004
 	ldr	r1, =S3C2440_MPLL_400MHZ
 	str	r1, [r0]
@@ -187,7 +187,7 @@ copyex:
 	/* Start ICACHE */
 	mrc p15, 0, r0, c1, c0, 0
 	orr r0, r0, #(0x01<<12)
-	mcr p15, 0, r0, c1, c0 0
+	mcr p15, 0, r0, c1, c0, 0
 
 #endif	/* CONFIG_S3C24X0 */
 
