@@ -498,7 +498,7 @@ void board_init_r(gd_t *id, ulong dest_addr)
 	mem_malloc_init (malloc_start, TOTAL_MALLOC_LEN);
 
 #if !defined(CONFIG_SYS_NO_FLASH)
-	puts("Flash: ");
+	puts("Nor Flash: ");
 
 	flash_size = flash_init();
 	if (flash_size > 0) {
@@ -521,7 +521,7 @@ void board_init_r(gd_t *id, ulong dest_addr)
 		print_size(flash_size, "\n");
 # endif /* CONFIG_SYS_FLASH_CHECKSUM */
 	} else {
-		puts("Get O Kb Nor Flash\n");
+		puts("O Kb\n");
 		// hang();
 	}
 #endif
