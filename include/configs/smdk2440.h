@@ -261,6 +261,7 @@
 #define CONFIG_YAFFS2
 #define CONFIG_RBTREE
 #endif
+#define CONFIG_CMD_NAND_YAFFS
 
 /* additions for new relocation code, must be added to all boards */
 #define CONFIG_SYS_SDRAM_BASE	PHYS_SDRAM_1
